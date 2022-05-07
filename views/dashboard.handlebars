@@ -1,0 +1,29 @@
+<form class='container dash-form'>
+  <div class='my-3'>
+    <input type='text' id='post-title' placeholder='Title' />
+    <input type='text' id='post-body' placeholder='Body' />
+    <button id='add-post-btn'>Add Post</button>
+  </div>
+</form>
+<div id='posts-container' class='container'>
+  {{#each posts as |post|}}
+  <div>
+    <article class='card dash-card'>
+      <div class='card-header'>
+        <a href='/helppost/{{post.id}}'>{{post.title}}</a>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{post.body}}</li>
+        <li class="list-group-item"> Posted By:
+          {{post.username}}</li>
+        <li class="list-group-item"> Created on:
+          {{format_date post.createdAt}}
+      </ul>
+    </article>
+  </div>
+  {{/each}}
+  {{#if loggedIn}}
+  <script src="/javascript/postTags.js"></script>
+  <script src="/javascript/add-post.js"></script>
+  {{/if}}
+</div>
